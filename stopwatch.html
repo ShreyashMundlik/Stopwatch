@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+  </head>
+  <style>
+    body {
+      background-color: rgb(44, 44, 49);
+    }
+    h2 {
+      text-align: center;
+      font-size: 52px;
+      color: aliceblue;
+      text-decoration: underline;
+    }
+    .time {
+      color: white;
+      font-size: 52px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .btn {
+      font-size: 40px;
+      text-align: center;
+      cursor: pointer;
+      padding: 18px;
+    }
+    #start {
+      background-color: forestgreen;
+      border: none;
+      border-radius: 5px;
+      font-size: 25px;
+    }
+    #stop {
+      background-color: yellow;
+      border: none;
+      border-radius: 5px;
+      font-size: 25px;
+    }
+    #reset {
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      font-size: 25px;
+    }
+    h3{
+        color: aliceblue;
+        text-align: center;
+        font-size: 30px;
+    }
+    #time{
+        border: 1px solid black;
+        width: 100%;
+        height: 50px;
+        color: aliceblue;
+        font-size: 30px;
+        font-family: cursive;
+        text-align: center;
+    }
+  </style>
+  <body>
+    
+    <h3>Digital|Clock</h3>
+    <div id="time"></div>
+    <div class="container">
+      <div class="time">
+        <h2>Stopwatch</h2>
+        <span id="hr">00</span>
+        <span>hr</span>
+        <span id="min">00</span>
+        <span>min</span>
+        <span id="sec">00</span>
+        <span>sec</span>
+        <span id="ms">00</span>
+        <span>ms</span>
+      </div>
+      <div class="btn">
+        <button id="start" onclick="start()">start</button>
+        <button id="stop" onclick="stop()">stop</button>
+        <button id="reset" onclick="reset()">reset</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function displayTime() {
+      let time = new Date();
+      document.getElementById("time").innerHTML=time;
+    }
+    setInterval(displayTime, 1000);
+
+    
+    var hr = 0;
+    var min = 0;
+    var sec = 0;
+    var ms=0;
+    var timer = false;
+
+    function start() {
+      timer = true;
+      Stopwatch();
+    }
+    function stop() {
+      timer = false;
+    }
+    function reset() {
+      timer = false;
+      hr = 00;
+      min = 00;
+      sec = 00;
+      ms=00;
+      document.getElementById("hr").innerHTML = '00';
+      document.getElementById("min").innerHTML ='00';
+      document.getElementById("sec").innerHTML = "00";
+    }
+    function Stopwatch() {
+      if (timer == true) {
+        ms = ms + 1;
+      }
+      if (ms == 50) {
+        sec = sec + 1;
+        ms=00;
+      }
+      if (sec == 60) {
+        min = min + 1;
+        sec = 00;
+        ms=00;
+      }
+      if (min == 60) {
+        hr = hr + 1;
+        min = 00;
+        sec = 00;
+        ms=00;
+      }
+      document.getElementById("hr").innerHTML = hr;
+      document.getElementById("min").innerHTML = min;
+      document.getElementById("sec").innerHTML = sec;
+      document.getElementById("ms").innerHTML = ms;
+   
+      setTimeout(Stopwatch, 10);
+    }
+  </script>
+</html>
